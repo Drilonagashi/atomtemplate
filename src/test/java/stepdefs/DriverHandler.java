@@ -4,7 +4,6 @@ import generalUtils.Randomizer;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverHandler {
 
@@ -27,10 +26,13 @@ public class DriverHandler {
         return driver;
     }
 
-    public static void closeIpadDriver() {
-        if (iosDriver != null) {
+    public static void closeApp(AppiumDriver drv) {
+        if(drv.equals(iosDriver)) {
             iosDriver.closeApp();
             iosDriver.quit();
+        } else if(drv.equals(androidDriver)) {
+            androidDriver.closeApp();
+            androidDriver.quit();
         }
     }
 
